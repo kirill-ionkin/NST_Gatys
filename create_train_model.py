@@ -95,7 +95,7 @@ def create_nst_model(
         if name_layer_i in content_layers:
             content_target = nst_model(content_img)
             content_loss_layer = ContentLoss(content_target)
-            nst_model.add_module("content_loss_layer_{}".format(c), content_loss_layer)
+            nst_model.add_module(f"content_loss_layer_{c}", content_loss_layer)
             c += 1
 
             content_loss_layers.append(content_loss_layer)
@@ -103,7 +103,7 @@ def create_nst_model(
         if name_layer_i in style_layers:
             style_target = nst_model(style_img)
             style_loss_layer = StyleLoss(style_target)
-            nst_model.add_module("style_loss_layer_{}".format(s), style_loss_layer)
+            nst_model.add_module(f"style_loss_layer_{s}", style_loss_layer)
             s += 1
 
             style_loss_layers.append(style_loss_layer)
@@ -126,8 +126,7 @@ def create_nst_model(
 
 
 def get_input_optimizer(input_img):
-    optimizer = optim.LBFGS([input_img.requires_grad_()])
-    return optimizer
+    return optim.LBFGS([input_img.requires_grad_()])
 
 
 def run_style_transfer(

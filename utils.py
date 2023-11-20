@@ -93,7 +93,7 @@ def plot_loss_history(history_loss, s, c, visual_threshold=None, path_to_save=No
         marker="o",
     )
     ax_1.grid(True)
-    ax_1.set_title("style(s_weight={}) and content(c_weight={}) loss".format(s, c))
+    ax_1.set_title(f"style(s_weight={s}) and content(c_weight={c}) loss")
     ax_1.set_xlabel("steps")
     ax_1.legend()
 
@@ -145,9 +145,8 @@ def create_collage(
     i = 0
     x = 0
     y = 0
-    for row in range(n_rows):
-        for col in range(n_cols):
-
+    for _ in range(n_rows):
+        for _ in range(n_cols):
             collage_img.paste(images[i], (x, y))
             i += 1
             x += img_size
